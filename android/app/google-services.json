@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1086471151087",
+    "project_id": "else7a-tmam",
+    "storage_bucket": "else7a-tmam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086471151087:android:e1d8d62a26fb45d12f6a1a",
+        "android_client_info": {
+          "package_name": "com.example.else7a_tamam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086471151087-4jtg9nqpmc22er3qsfpp4r2il58dkvfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMb0xPtJGyTgxgGzzq2Qe7o2h36y-dsLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086471151087-4jtg9nqpmc22er3qsfpp4r2il58dkvfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
