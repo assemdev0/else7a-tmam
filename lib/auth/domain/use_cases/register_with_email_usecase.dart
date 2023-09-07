@@ -5,30 +5,15 @@ import '/core/usecase/base_usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/error/failures.dart';
+import 'login_with_email_usecase.dart';
 
-class LoginWithEmailUseCase extends BaseUseCase<User, AuthParams> {
+class RegisterWithEmailUseCase extends BaseUseCase<User, AuthParams> {
   final BaseAuthRepository _baseAuthRepository;
 
-  LoginWithEmailUseCase(this._baseAuthRepository);
+  RegisterWithEmailUseCase(this._baseAuthRepository);
 
   @override
   Future<Either<Failure, User>> call(AuthParams params) async {
     return await _baseAuthRepository.loginWithEmail(params);
   }
-}
-
-class AuthParams extends Equatable {
-  final String email;
-  final String password;
-
-  const AuthParams({
-    required this.email,
-    required this.password,
-  });
-
-  @override
-  List<Object> get props => [
-        email,
-        password,
-      ];
 }
