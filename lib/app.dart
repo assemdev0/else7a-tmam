@@ -1,7 +1,7 @@
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
+import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:sizer/sizer.dart';
 import 'auth/presentation/manager/auth_manager.dart';
 import 'auth/presentation/screens/login_screen.dart';
 import 'core/global/theme/theme_data/theme_data_light.dart';
@@ -16,10 +16,15 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => sl<AuthManager>()),
       ],
-      child: MaterialApp(
-        theme: getThemeDataLight(),
-        title: AppStrings.appName,
-        home: const LoginScreen(),
+      child: Sizer(
+        builder: (BuildContext context, Orientation orientation,
+            DeviceType deviceType) {
+          return MaterialApp(
+            theme: getThemeDataLight(),
+            title: AppStrings.appName,
+            home: const LoginScreen(),
+          );
+        },
       ),
     );
   }

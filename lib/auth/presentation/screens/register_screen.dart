@@ -1,6 +1,5 @@
 import 'package:easy_loading_button/easy_loading_button.dart';
 import 'package:else7a_tamam/auth/presentation/manager/auth_manager.dart';
-import 'package:else7a_tamam/auth/presentation/screens/register_screen.dart';
 import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
 import 'package:else7a_tamam/core/utilities/app_strings.dart';
 import 'package:email_validator/email_validator.dart';
@@ -8,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.login),
+        title: const Text(AppStrings.register),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -24,11 +23,12 @@ class LoginScreen extends StatelessWidget {
             vertical: 3.0.h,
           ),
           child: Form(
-            key: context.watch<AuthManager>().loginFormKey,
+            key: context.watch<AuthManager>().registerFormKey,
             child: Column(
               children: [
                 TextFormField(
-                  controller: context.watch<AuthManager>().loginEmailController,
+                  controller:
+                      context.watch<AuthManager>().registerEmailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     final bool isValid = EmailValidator.validate(value ?? '');
@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 TextFormField(
                   controller:
-                      context.watch<AuthManager>().loginPasswordController,
+                      context.watch<AuthManager>().registerPasswordController,
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
@@ -64,26 +64,37 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 0.8.h,
+                  height: 3.0.h,
                 ),
-                Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(AppStrings.createNewAccount)),
+                TextFormField(
+                  controller: context
+                      .watch<AuthManager>()
+                      .registerConfirmPasswordController,
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.pleaseEnterSomeText;
+                    } else if (value.length < 6) {
+                      return AppStrings.passwordMustBeatLeast6Characters;
+                    } else if (value !=
+                        context
+                            .watch<AuthManager>()
+                            .registerPasswordController
+                            .text) {
+                      return AppStrings.notMach;
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: AppStrings.confirmPassword,
+                  ),
                 ),
                 SizedBox(
-                  height: 0.8.h,
+                  height: 4.h,
                 ),
                 EasyButton(
-                  idleStateWidget: const Text(AppStrings.login),
+                  idleStateWidget: const Text(AppStrings.register),
                   loadingStateWidget: const CircularProgressIndicator(
                     strokeWidth: 3.0,
                     valueColor: AlwaysStoppedAnimation<Color>(
@@ -92,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   type: EasyButtonType.elevated,
                   onPressed: () {
-                    context.read<AuthManager>().login(context);
+                    context.read<AuthManager>().register(context);
                   },
                   elevation: 4.0.w,
                   width: 75.0.w,
