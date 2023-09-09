@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ErrorMessageModel extends Equatable {
-  final int statusCode;
+  final String statusCode;
   final String statusMessage;
   final bool success;
 
