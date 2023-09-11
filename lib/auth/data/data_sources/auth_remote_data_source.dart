@@ -20,6 +20,23 @@ class AuthRemoteDataSource extends BaseAuthRemoteDataSource {
   Future<User> loginWithEmail(AuthParams params) async {
     debugPrint(params.email);
     debugPrint(params.password);
+    // final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //   email: params.email,
+    //   password: params.password,
+    // );
+    // if (user.user != null) {
+    //   return user.user!;
+    // } else {
+    //   log("FirebaseAuthException: Something went wrong");
+    //   throw FirebaseAuthException(code: user.credential.toString()
+    //       // errorMessageModel: const ErrorMessageModel(
+    //       //   statusMessage: "Something went wrong",
+    //       //   statusCode: "FirebaseAuthException",
+    //       //   success: false,
+    //       // ),
+    //       );
+    // }
+
     try {
       final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: params.email,

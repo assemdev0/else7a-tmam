@@ -39,7 +39,6 @@ class AuthCubit extends Cubit<AuthState> {
   var registerEmailController = TextEditingController();
   var registerPasswordController = TextEditingController();
   var registerConfirmPasswordController = TextEditingController();
-  bool isRegisterLoading = false;
 
   /// Login with email and password
   login(BuildContext context) async {
@@ -63,6 +62,15 @@ class AuthCubit extends Cubit<AuthState> {
             desc: l.message,
             btnOkOnPress: () {},
           ).show();
+          // AwesomeDialog(
+          //   context: context,
+          //   dialogType: DialogType.error,
+          //   animType: AnimType.bottomSlide,
+          //   title: AppStrings.error,
+          //   desc: l.message,
+          //   btnOkOnPress: () {},
+          // ).show();
+          log(l.message);
           emit(AuthLoginFailed());
         },
         (r) {
@@ -145,7 +153,6 @@ class AuthCubit extends Cubit<AuthState> {
   register(BuildContext context) async {
     if (registerFormKey.currentState!.validate()) {
       emit(AuthRegisterLoading());
-      isRegisterLoading = true;
       final result = await registerWithEmailUseCase(
         AuthParams(
           email: registerEmailController.text,

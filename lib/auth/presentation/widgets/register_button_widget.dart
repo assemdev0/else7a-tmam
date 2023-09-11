@@ -6,6 +6,9 @@ import 'package:sizer/sizer.dart';
 import '../../../core/global/theme/app_colors_light.dart';
 import '../../../core/utilities/app_strings.dart';
 import '../manager/cubit/cubit/auth_cubit.dart';
+import 'package:flutter/material.dart';
+
+import '../../../core/utilities/app_strings.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
   const RegisterButtonWidget({super.key});
