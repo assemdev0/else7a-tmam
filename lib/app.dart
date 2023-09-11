@@ -1,6 +1,6 @@
-import 'package:else7a_tamam/auth/presentation/manager/cubit/cubit/auth_cubit.dart';
-import 'package:else7a_tamam/core/utilities/app_constance.dart';
-import 'package:else7a_tamam/home/presentation/screens/home_screen.dart';
+import '/auth/presentation/manager/cubit/cubit/auth_cubit.dart';
+import '/core/utilities/app_constance.dart';
+import '/wisdom/presentation/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

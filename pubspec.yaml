@@ -16,6 +16,7 @@ dependencies:
   firebase_core: ^2.15.1
   firebase_auth: ^4.9.0
   firebase_messaging: ^14.6.7
+  cloud_firestore: ^4.9.1
   equatable: ^2.0.5
   sizer: ^2.0.15
   get_it: ^7.6.4

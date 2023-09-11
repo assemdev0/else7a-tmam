@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/wisdom_menu.dart';
 
 class WisdomMenuModel extends WisdomMenu {
@@ -16,7 +18,7 @@ class WisdomMenuModel extends WisdomMenu {
   Map<String, dynamic> toJson() {
     return {
       'name': super.name,
-      'subMenu': super.subMenu,
+      'subMenu': FieldValue.arrayUnion(super.subMenu),
     };
   }
 }
