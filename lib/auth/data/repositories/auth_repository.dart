@@ -15,8 +15,21 @@ class AuthRepository extends BaseAuthRepository {
 
   @override
   Future<Either<Failure, User>> loginWithEmail(AuthParams params) async {
-    final result = await _baseAuthRemoteDataSource.loginWithEmail(params);
     try {
+      final result = await _baseAuthRemoteDataSource.loginWithEmail(params);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(e.errorMessageModel.statusMessage),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, NoParams>> logout() async {
+    try {
+      final result = await _baseAuthRemoteDataSource.logout();
+
       return Right(result);
     } on ServerException {
       return const Left(
@@ -26,21 +39,10 @@ class AuthRepository extends BaseAuthRepository {
   }
 
   @override
-  Future<Either<Failure, NoParams>> logout() async {
-    final result = await _baseAuthRemoteDataSource.logout();
-    try {
-      return const Right(NoParams());
-    } on ServerException {
-      return const Left(
-        ServerFailure(AppStrings.somethingWrong),
-      );
-    }
-  }
-
-  @override
   Future<Either<Failure, User>> registerWithEmail(AuthParams params) async {
-    final result = await _baseAuthRemoteDataSource.registerWithEmail(params);
     try {
+      final result = await _baseAuthRemoteDataSource.registerWithEmail(params);
+
       return Right(result);
     } on ServerException {
       return const Left(

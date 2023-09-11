@@ -1,12 +1,13 @@
-import 'package:easy_loading_button/easy_loading_button.dart';
-import 'package:else7a_tamam/auth/presentation/manager/auth_manager.dart';
 import 'package:else7a_tamam/auth/presentation/screens/register_screen.dart';
+import 'package:else7a_tamam/auth/presentation/widgets/login_button_widget.dart';
 import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
 import 'package:else7a_tamam/core/utilities/app_strings.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+
+import '../manager/cubit/cubit/auth_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,93 +18,108 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.login),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(
-            horizontal: 3.0.w,
-            vertical: 3.0.h,
-          ),
-          child: Form(
-            key: context.watch<AuthManager>().loginFormKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: context.watch<AuthManager>().loginEmailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    final bool isValid = EmailValidator.validate(value ?? '');
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.pleaseEnterSomeText;
-                    } else if (!isValid) {
-                      return AppStrings.invalidEmail;
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: AppStrings.email,
+      body: BlocProvider(
+        create: (BuildContext context) => AuthCubit(),
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            return Center(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 3.0.w,
+                  vertical: 3.0.h,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColorsLight.whiteColor,
+                      border: Border.all(
+                        color: AppColorsLight.primaryColor,
+                        width: 0.5.w,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0.w),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColorsLight.shadowColor.withOpacity(0.7),
+                          blurRadius: 10.0.w,
+                          spreadRadius: 2.w,
+                          offset: const Offset(0, 5),
+                        ),
+                      ]),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 4.0.w,
+                    vertical: 4.0.h,
                   ),
-                ),
-                SizedBox(
-                  height: 3.0.h,
-                ),
-                TextFormField(
-                  controller:
-                      context.watch<AuthManager>().loginPasswordController,
-                  obscureText: true,
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.pleaseEnterSomeText;
-                    } else if (value.length < 6) {
-                      return AppStrings.passwordMustBeatLeast6Characters;
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: AppStrings.password,
-                  ),
-                ),
-                SizedBox(
-                  height: 0.8.h,
-                ),
-                Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
+                  child: Form(
+                    key: AuthCubit.get(context).loginFormKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller:
+                              AuthCubit.get(context).loginEmailController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            final bool isValid =
+                                EmailValidator.validate(value ?? '');
+                            if (value == null || value.isEmpty) {
+                              return AppStrings.pleaseEnterSomeText;
+                            } else if (!isValid) {
+                              return AppStrings.invalidEmail;
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            labelText: AppStrings.email,
                           ),
-                        );
-                      },
-                      child: const Text(AppStrings.createNewAccount)),
-                ),
-                SizedBox(
-                  height: 0.8.h,
-                ),
-                EasyButton(
-                  idleStateWidget: const Text(AppStrings.login),
-                  loadingStateWidget: const CircularProgressIndicator(
-                    strokeWidth: 3.0,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      AppColorsLight.whiteColor,
+                        ),
+                        SizedBox(
+                          height: 3.0.h,
+                        ),
+                        TextFormField(
+                          controller:
+                              AuthCubit.get(context).loginPasswordController,
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppStrings.pleaseEnterSomeText;
+                            } else if (value.length < 6) {
+                              return AppStrings
+                                  .passwordMustBeatLeast6Characters;
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            labelText: AppStrings.password,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0.8.h,
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text(AppStrings.createNewAccount)),
+                        ),
+                        SizedBox(
+                          height: 0.8.h,
+                        ),
+                        const LoginButtonWidget(),
+                      ],
                     ),
                   ),
-                  type: EasyButtonType.elevated,
-                  onPressed: () {
-                    context.read<AuthManager>().login(context);
-                  },
-                  elevation: 4.0.w,
-                  width: 75.0.w,
-                  height: 6.0.h,
-                  useEqualLoadingStateWidgetDimension: true,
-                  useWidthAnimation: true,
-                  borderRadius: 5.0.w,
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

@@ -1,21 +1,26 @@
 class AppStrings {
-  static const String appName = 'Else7a Tmam';
-  static const String somethingWrong = 'Something went wrong!';
-  static const String error = 'Error';
-  static const String success = 'Success';
-  static const String loginSuccess = 'Login Success';
-  static const String logoutSuccess = 'Logout Success';
-  static const String registerSuccess = 'Register Success';
-  static const String login = 'Login';
-  static const String register = 'Register';
-  static const String logout = 'Logout';
-  static const String email = 'Email';
-  static const String password = 'Password';
-  static const String confirmPassword = 'Confirm Password';
-  static const String createNewAccount = 'Create New Account?';
-  static const String invalidEmail = 'Invalid email';
-  static const String notMach = 'Not mach';
-  static const String pleaseEnterSomeText = 'Please enter some text';
+  static const String appName = 'الصحة تمام';
+  static const String somethingWrong = 'حدث خطأ ما';
+  static const String error = 'خطأ';
+  static const String success = 'نجاح';
+  static const String loginSuccess = 'تم تسجيل الدخول بنجاح';
+  static const String logoutSuccess = 'تم تسجيل الخروج بنجاح';
+  static const String registerSuccess = 'تم التسجيل بنجاح';
+  static const String login = 'تسجيل الدخول';
+  static const String register = 'تسجيل حساب جديد';
+  static const String logout = 'تسجيل الخروج';
+  static const String email = 'البريد الإلكتروني';
+  static const String password = 'كلمة المرور';
+  static const String confirmPassword = 'تأكيد كلمة المرور';
+  static const String createNewAccount = 'إنشاء حساب جديد؟';
+  static const String invalidEmail = 'البريد الإلكتروني غير صالح';
+  static const String notMach = 'كلمة المرور غير متطابقة';
+  static const String pleaseEnterSomeText = 'من فضلك أدخل بعض النص';
   static const String passwordMustBeatLeast6Characters =
-      'Password must be at least 6 characters';
+      'كلمة المرور يجب أن تكون على الأقل 6 أحرف';
+  static const String somethingWentWrong = 'حدث خطأ ما';
+
+  static const String home = 'الرئيسية';
+
+  static const String ok = 'موافق';
 }
