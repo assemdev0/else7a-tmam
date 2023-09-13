@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/error/failures.dart';
 
-class LoginWithEmailUseCase extends BaseUseCase<User, AuthParams, Failure> {
+class LoginWithEmailUseCase extends BaseUseCase<User, AuthParams> {
   final BaseAuthRepository _baseAuthRepository;
 
   LoginWithEmailUseCase(this._baseAuthRepository);

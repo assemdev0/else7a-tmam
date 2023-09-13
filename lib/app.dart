@@ -1,6 +1,6 @@
-import '/auth/presentation/manager/cubit/cubit/auth_cubit.dart';
+import 'auth/presentation/manager/auth_cubit.dart';
 import '/core/utilities/app_constance.dart';
-import '/wisdom/presentation/screens/home_screen.dart';
+import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'auth/presentation/screens/login_screen.dart';
 import 'core/global/theme/theme_data/theme_data_light.dart';
+import 'wisdom/presentation/manager/wisdom_menu_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => AuthCubit()),
+        BlocProvider(create: (BuildContext context) => WisdomMenuCubit()),
       ],
       child: Sizer(
         builder: (BuildContext context, Orientation orientation,
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
             theme: getThemeDataLight(),
             title: AppStrings.appName,
             home: AppConstance.uId.isNotEmpty
-                ? const HomeScreen()
+                ? const WisdomMenuScreen()
                 : const LoginScreen(),
           );
         },

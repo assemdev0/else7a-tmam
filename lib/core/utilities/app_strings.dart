@@ -23,4 +23,11 @@ class AppStrings {
   static const String home = 'الرئيسية';
 
   static const String ok = 'موافق';
+  static const String noData = 'لا يوجد بيانات';
+  static const String addNewWisdomMenu = 'إضافة قائمة جديدة';
+  static const String wisdomMenuName = 'اسم القائمة';
+  static const String wisdomName = 'اسم الحكمة';
+  static const String addNewWisdom = 'إضافة حكمة جديدة';
+  static const String wisdomAddedSuccessfully = 'تم إضافة الحكمة بنجاح';
+  static const String addNewWisdomMenuSuccessfully = 'تم إضافة القائمة بنجاح';
 }

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 
 import '../repositories/base_wisdom_menu_repository.dart';
 
-class AddNewWisdomMenuUseCase extends BaseUseCase<void, WisdomParams, Failure> {
+class AddNewWisdomMenuUseCase extends BaseUseCase<void, WisdomParams> {
   final BaseWisdomMenuRepository _baseWisdomMenuRepository;
 
   AddNewWisdomMenuUseCase(this._baseWisdomMenuRepository);
@@ -18,7 +18,7 @@ class AddNewWisdomMenuUseCase extends BaseUseCase<void, WisdomParams, Failure> {
 
 class WisdomParams extends Equatable {
   final String name;
-  final List<String> subMenu;
+  final List<dynamic> subMenu;
 
   const WisdomParams({
     required this.name,

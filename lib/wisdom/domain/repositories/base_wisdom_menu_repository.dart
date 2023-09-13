@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:else7a_tamam/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
+import '/wisdom/domain/entities/wisdom_menu.dart';
+import '/wisdom/domain/use_cases/add_new_wisdom_menu_usecase.dart';
+import '/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
 
-import '../../../core/error/failures.dart';
-import '../entities/wisdom_menu.dart';
-import '../use_cases/add_new_wisdom_menu_usecase.dart';
+import '/core/error/failures.dart';
 
 abstract class BaseWisdomMenuRepository {
   Future<Either<Failure, List<WisdomMenu>>> getWisdomMenu();

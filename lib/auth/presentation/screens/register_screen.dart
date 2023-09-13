@@ -1,4 +1,4 @@
-import 'package:else7a_tamam/auth/presentation/manager/cubit/cubit/auth_cubit.dart';
+import 'package:else7a_tamam/auth/presentation/manager/auth_cubit.dart';
 import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
 import 'package:else7a_tamam/core/utilities/app_strings.dart';
 import 'package:email_validator/email_validator.dart';

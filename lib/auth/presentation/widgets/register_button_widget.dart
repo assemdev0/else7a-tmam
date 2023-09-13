@@ -4,8 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/global/theme/app_colors_light.dart';
+import '../../../core/global/widgets/app_default_button.dart';
 import '../../../core/utilities/app_strings.dart';
-import '../manager/cubit/cubit/auth_cubit.dart';
+import '../manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utilities/app_strings.dart';
@@ -17,24 +18,11 @@ class RegisterButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (BuildContext context, AuthState state) {
-        return EasyButton(
-          idleStateWidget: const Text(AppStrings.register),
-          loadingStateWidget: const CircularProgressIndicator(
-            strokeWidth: 3.0,
-            valueColor: AlwaysStoppedAnimation<Color>(
-              AppColorsLight.whiteColor,
-            ),
-          ),
-          type: EasyButtonType.elevated,
-          onPressed: () async {
+        return AppDefaultButton(
+          onPressed: () {
             return AuthCubit.get(context).register(context);
           },
-          elevation: 4.0.w,
-          width: 75.0.w,
-          height: 6.0.h,
-          useEqualLoadingStateWidgetDimension: true,
-          useWidthAnimation: true,
-          borderRadius: 5.0.w,
+          text: AppStrings.register,
         );
       },
     );

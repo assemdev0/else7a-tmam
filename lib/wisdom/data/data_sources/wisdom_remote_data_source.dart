@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:else7a_tamam/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
 import '/core/network/error_message_model.dart';
@@ -58,13 +60,17 @@ class WisdomRemoteDataSource extends BaseWisdomRemoteDataSource {
 
   @override
   Future<void> addSingleWisdom(SingleWisdomParams params) {
+    log(params.name);
+    log(params.subMenu);
     try {
       return FirebaseFirestore.instance
           .collection('wisdom')
           .doc(params.name)
           .update({
-        'subMenu': FieldValue.arrayUnion([params.name])
-      });
+            'subMenu': FieldValue.arrayUnion([params.subMenu])
+          })
+          .then((value) => log("Wisdom Added"))
+          .catchError((error) => log("Failed to add Wisdom: $error"));
     } on FirebaseException catch (e) {
       throw ServerException(
         errorMessageModel: ErrorMessageModel(

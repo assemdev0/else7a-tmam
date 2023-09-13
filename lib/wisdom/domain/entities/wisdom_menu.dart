@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class WisdomMenu extends Equatable {
   final String name;
-  final List<String> subMenu;
+  final List<dynamic> subMenu;
 
   const WisdomMenu({
     required this.name,

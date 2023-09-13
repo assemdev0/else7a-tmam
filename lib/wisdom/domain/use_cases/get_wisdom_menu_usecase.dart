@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/error/failures.dart';
-import '../../../core/usecase/base_usecase.dart';
-import '../entities/wisdom_menu.dart';
-import '../repositories/base_wisdom_menu_repository.dart';
+import '/core/error/failures.dart';
+import '/core/usecase/base_usecase.dart';
+import '/wisdom/domain/entities/wisdom_menu.dart';
+import '/wisdom/domain/repositories/base_wisdom_menu_repository.dart';
 
-class GetWisdomMenuUseCase
-    extends BaseUseCase<List<WisdomMenu>, NoParams, Failure> {
+class GetWisdomMenuUseCase extends BaseUseCase<List<WisdomMenu>, NoParams> {
   final BaseWisdomMenuRepository _baseWisdomMenuRepository;
 
   GetWisdomMenuUseCase(this._baseWisdomMenuRepository);

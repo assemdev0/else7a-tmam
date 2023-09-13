@@ -5,8 +5,7 @@ import '../../../core/error/failures.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../repositories/base_wisdom_menu_repository.dart';
 
-class AddSingleWisdomUseCase
-    extends BaseUseCase<void, SingleWisdomParams, Failure> {
+class AddSingleWisdomUseCase extends BaseUseCase<void, SingleWisdomParams> {
   final BaseWisdomMenuRepository _baseWisdomMenuRepository;
 
   AddSingleWisdomUseCase(this._baseWisdomMenuRepository);

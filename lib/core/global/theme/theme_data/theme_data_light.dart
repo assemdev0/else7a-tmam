@@ -10,18 +10,25 @@ ThemeData getThemeDataLight() => ThemeData(
       primaryColorDark: AppColorsLight.primaryDartColor,
       scaffoldBackgroundColor: AppColorsLight.scaffoldBackgroundColor,
       hintColor: AppColorsLight.accentColor,
+      errorColor: AppColorsLight.errorColor,
+
+      /// Floating Action Button Theme
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColorsLight.primaryColor,
+      ),
 
       /// App Bar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: AppColorsLight.appBarBackgroundColor,
         elevation: 1.0.w,
+        centerTitle: true,
         iconTheme: const IconThemeData(
           color: AppColorsLight.iconColor,
         ),
         titleTextStyle: TextStyle(
-          color: AppColorsLight.textDarkColor,
+          color: AppColorsLight.whiteColor,
           fontWeight: FontWeight.bold,
-          fontSize: 18.0.sp,
+          fontSize: 20.0.sp,
         ),
       ),
 
@@ -66,6 +73,25 @@ ThemeData getThemeDataLight() => ThemeData(
           color: AppColorsLight.textDarkColor,
           fontWeight: FontWeight.bold,
           fontSize: 13.0.sp,
+        ),
+      ),
+
+      /// Text Theme
+      textTheme: TextTheme(
+        bodyLarge: TextStyle(
+          color: AppColorsLight.whiteColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 18.0.sp,
+        ),
+        bodyMedium: TextStyle(
+          color: AppColorsLight.whiteColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 16.0.sp,
+        ),
+        bodySmall: TextStyle(
+          color: AppColorsLight.whiteColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 14.0.sp,
         ),
       ),
     );

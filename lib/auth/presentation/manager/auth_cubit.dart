@@ -1,21 +1,22 @@
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import '../../../core/global/widgets/default_dialog.dart';
 import '/auth/presentation/screens/login_screen.dart';
 import '/core/utilities/app_constance.dart';
 import '/core/utilities/enums.dart';
-import '/wisdom//presentation/screens/home_screen.dart';
+import '/wisdom//presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../../core/network/shared_prefrences.dart';
-import '../../../../../core/services/services_locator.dart';
-import '../../../../../core/usecase/base_usecase.dart';
-import '../../../../../core/utilities/app_strings.dart';
-import '../../../../domain/use_cases/login_with_email_usecase.dart';
-import '../../../../domain/use_cases/logout_usecase.dart';
-import '../../../../domain/use_cases/register_with_email_usecase.dart';
+import '../../../core/network/shared_prefrences.dart';
+import '../../../core/services/services_locator.dart';
+import '../../../core/usecase/base_usecase.dart';
+import '../../../core/utilities/app_strings.dart';
+import '../../domain/use_cases/login_with_email_usecase.dart';
+import '../../domain/use_cases/logout_usecase.dart';
+import '../../domain/use_cases/register_with_email_usecase.dart';
 
 part 'auth_state.dart';
 
@@ -53,34 +54,21 @@ class AuthCubit extends Cubit<AuthState> {
 
       result.fold(
         (l) {
-          log(l.message);
-          AwesomeDialog(
+          defaultAppDialog(
             context: context,
             dialogType: DialogType.error,
-            animType: AnimType.bottomSlide,
             title: AppStrings.error,
             desc: l.message,
             btnOkOnPress: () {},
           ).show();
-          // AwesomeDialog(
-          //   context: context,
-          //   dialogType: DialogType.error,
-          //   animType: AnimType.bottomSlide,
-          //   title: AppStrings.error,
-          //   desc: l.message,
-          //   btnOkOnPress: () {},
-          // ).show();
-          log(l.message);
           emit(AuthLoginFailed());
         },
         (r) {
-          AwesomeDialog(
+          defaultAppDialog(
             context: context,
             dialogType: DialogType.success,
-            animType: AnimType.bottomSlide,
             title: AppStrings.success,
             desc: AppStrings.loginSuccess,
-            btnOkText: AppStrings.ok,
             btnOkOnPress: () {
               AppConstance.uId = r.uid;
               SharedPref.setData(key: AppConstance.uIdKey, value: r.uid);
@@ -97,7 +85,7 @@ class AuthCubit extends Cubit<AuthState> {
               }
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
+                  builder: (context) => const WisdomMenuScreen(),
                 ),
                 (route) => false,
               );
@@ -117,10 +105,9 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (l) {
         log("Error is: ${l.message}");
-        AwesomeDialog(
+        defaultAppDialog(
           context: context,
           dialogType: DialogType.error,
-          animType: AnimType.bottomSlide,
           title: AppStrings.error,
           desc: l.message,
           btnOkOnPress: () {},
@@ -128,10 +115,9 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthLogoutFailed());
       },
       (r) {
-        AwesomeDialog(
+        defaultAppDialog(
           context: context,
           dialogType: DialogType.success,
-          animType: AnimType.bottomSlide,
           title: AppStrings.success,
           desc: AppStrings.logoutSuccess,
           btnOkOnPress: () {
@@ -162,11 +148,9 @@ class AuthCubit extends Cubit<AuthState> {
 
       result.fold(
         (l) {
-          log("Error is: ${l.message}");
-          AwesomeDialog(
+          defaultAppDialog(
             context: context,
             dialogType: DialogType.error,
-            animType: AnimType.bottomSlide,
             title: AppStrings.error,
             desc: l.message,
             btnOkOnPress: () {},
@@ -174,11 +158,9 @@ class AuthCubit extends Cubit<AuthState> {
           emit(AuthRegisterFailed());
         },
         (r) {
-          debugPrint(r.toString());
-          AwesomeDialog(
+          defaultAppDialog(
             context: context,
             dialogType: DialogType.success,
-            animType: AnimType.bottomSlide,
             title: AppStrings.success,
             desc: AppStrings.registerSuccess,
             btnOkOnPress: () {
