@@ -1,8 +1,8 @@
-import 'package:else7a_tamam/core/global/widgets/app_default_button.dart';
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
-import 'package:else7a_tamam/wisdom/presentation/manager/wisdom_menu_cubit.dart';
+import '/core/global/widgets/app_default_button.dart';
+import '/core/utilities/app_strings.dart';
+import '/wisdom/presentation/manager/wisdom_menu_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddNewWisdom extends StatelessWidget {
   const AddNewWisdom({Key? key, required this.name}) : super(key: key);

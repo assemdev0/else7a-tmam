@@ -1,11 +1,11 @@
-import 'package:else7a_tamam/auth/presentation/screens/register_screen.dart';
-import 'package:else7a_tamam/auth/presentation/widgets/login_button_widget.dart';
-import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
+import '/auth/presentation/screens/register_screen.dart';
+import '/auth/presentation/widgets/login_button_widget.dart';
+import '/core/global/theme/app_colors_light.dart';
+import '/core/utilities/app_strings.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../manager/auth_cubit.dart';
 

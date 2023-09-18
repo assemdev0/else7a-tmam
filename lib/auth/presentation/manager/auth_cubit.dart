@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../core/network/shared_prefrences.dart';
+import '../../../core/network/shared_preferences.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utilities/app_strings.dart';

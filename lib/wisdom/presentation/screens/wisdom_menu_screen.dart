@@ -1,11 +1,8 @@
-import 'package:else7a_tamam/core/utilities/enums.dart';
-import 'package:else7a_tamam/wisdom/presentation/manager/wisdom_menu_cubit.dart';
+import '/wisdom/presentation/manager/wisdom_menu_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
 
 import '../widgets/wisdom_menu_error_widget.dart';
 import '../widgets/wisdom_menu_success_widget.dart';
-import '/core/utilities/app_constance.dart';
 import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 

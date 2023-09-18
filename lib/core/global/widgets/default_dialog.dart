@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
 import 'package:else7a_tamam/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 AwesomeDialog defaultAppDialog({
   required BuildContext context,

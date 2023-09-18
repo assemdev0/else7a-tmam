@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../app_colors_light.dart';
 
@@ -10,7 +10,6 @@ ThemeData getThemeDataLight() => ThemeData(
       primaryColorDark: AppColorsLight.primaryDartColor,
       scaffoldBackgroundColor: AppColorsLight.scaffoldBackgroundColor,
       hintColor: AppColorsLight.accentColor,
-      errorColor: AppColorsLight.errorColor,
 
       /// Floating Action Button Theme
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -20,7 +19,7 @@ ThemeData getThemeDataLight() => ThemeData(
       /// App Bar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: AppColorsLight.appBarBackgroundColor,
-        elevation: 1.0.w,
+        elevation: 1.0.h,
         centerTitle: true,
         iconTheme: const IconThemeData(
           color: AppColorsLight.iconColor,
@@ -28,7 +27,7 @@ ThemeData getThemeDataLight() => ThemeData(
         titleTextStyle: TextStyle(
           color: AppColorsLight.whiteColor,
           fontWeight: FontWeight.bold,
-          fontSize: 20.0.sp,
+          fontSize: 18.0.sp,
         ),
       ),
 
@@ -38,41 +37,41 @@ ThemeData getThemeDataLight() => ThemeData(
           borderRadius: BorderRadius.circular(5.0.w),
           borderSide: BorderSide(
             color: AppColorsLight.primaryColor,
-            width: 0.4.w,
+            width: 5.sp,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0.w),
           borderSide: BorderSide(
             color: AppColorsLight.primaryColor,
-            width: 0.4.w,
+            width: 5.sp,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.0.w),
           borderSide: BorderSide(
             color: AppColorsLight.primaryColor,
-            width: 0.4.w,
+            width: 5.sp,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.0.w),
           borderSide: BorderSide(
             color: AppColorsLight.errorColor,
-            width: 0.4.w,
+            width: 5.sp,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.0.w),
           borderSide: BorderSide(
             color: AppColorsLight.errorColor,
-            width: 0.4.w,
+            width: 5.sp,
           ),
         ),
         labelStyle: TextStyle(
           color: AppColorsLight.textDarkColor,
           fontWeight: FontWeight.bold,
-          fontSize: 13.0.sp,
+          fontSize: 14.0.sp,
         ),
       ),
 
@@ -85,12 +84,12 @@ ThemeData getThemeDataLight() => ThemeData(
         ),
         bodyMedium: TextStyle(
           color: AppColorsLight.whiteColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 16.0.sp,
+          fontWeight: FontWeight.normal,
+          fontSize: 16.5.sp,
         ),
         bodySmall: TextStyle(
           color: AppColorsLight.whiteColor,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w300,
           fontSize: 14.0.sp,
         ),
       ),

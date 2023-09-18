@@ -2,7 +2,7 @@ import 'package:else7a_tamam/core/utilities/app_constance.dart';
 import 'package:else7a_tamam/core/utilities/enums.dart';
 import 'package:else7a_tamam/wisdom/domain/entities/wisdom_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/utilities/app_strings.dart';
 import '../manager/wisdom_menu_cubit.dart';

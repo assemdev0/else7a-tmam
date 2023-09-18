@@ -1,7 +1,7 @@
 import '/core/utilities/app_strings.dart';
 import '/wisdom/presentation/manager/wisdom_menu_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/global/widgets/app_default_button.dart';
 
