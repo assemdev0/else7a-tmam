@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:else7a_tamam/core/usecase/base_usecase.dart';
+import '/core/usecase/base_usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/error/failures.dart';

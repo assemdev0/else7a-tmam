@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:else7a_tamam/core/error/failures.dart';
+import '/core/error/failures.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class BaseUseCase<T, Params> {

@@ -12,8 +12,22 @@ import 'auth/presentation/screens/login_screen.dart';
 import 'core/global/theme/theme_data/theme_data_light.dart';
 import 'wisdom/presentation/manager/wisdom_menu_cubit.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // NotificationsServices.setListeners();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +39,7 @@ class MyApp extends StatelessWidget {
       child: ResponsiveSizer(
         builder: (context, orientation, screenType) {
           return MaterialApp(
+            navigatorKey: MyApp.navigatorKey,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

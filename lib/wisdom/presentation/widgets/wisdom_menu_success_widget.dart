@@ -1,4 +1,4 @@
-import 'package:else7a_tamam/auth/presentation/manager/auth_cubit.dart';
+import '/auth/presentation/manager/auth_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '/wisdom/presentation/manager/wisdom_menu_cubit.dart';

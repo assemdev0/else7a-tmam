@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:else7a_tamam/auth/presentation/screens/login_screen.dart';
-import 'package:else7a_tamam/core/usecase/base_usecase.dart';
-import 'package:else7a_tamam/wisdom/presentation/screens/add_new_wisdom.dart';
-import 'package:else7a_tamam/wisdom/presentation/screens/wisdom_menu_screen.dart';
+import '/auth/presentation/screens/login_screen.dart';
+import '/core/usecase/base_usecase.dart';
+import '/wisdom/presentation/screens/add_new_wisdom.dart';
+import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 
 import '../../../core/global/widgets/default_dialog.dart';
 import '../../../core/utilities/app_strings.dart';

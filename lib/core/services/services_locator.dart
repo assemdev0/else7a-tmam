@@ -1,7 +1,7 @@
-import 'package:else7a_tamam/wisdom/data/data_sources/wisdom_remote_data_source.dart';
-import 'package:else7a_tamam/wisdom/domain/repositories/base_wisdom_menu_repository.dart';
-import 'package:else7a_tamam/wisdom/domain/use_cases/add_new_wisdom_menu_usecase.dart';
-import 'package:else7a_tamam/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
+import '/wisdom/data/data_sources/wisdom_remote_data_source.dart';
+import '/wisdom/domain/repositories/base_wisdom_menu_repository.dart';
+import '/wisdom/domain/use_cases/add_new_wisdom_menu_usecase.dart';
+import '/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
 
 import '../../auth/presentation/manager/auth_cubit.dart';
 import '../../wisdom/data/repositories/wisdom_menu_repository.dart';

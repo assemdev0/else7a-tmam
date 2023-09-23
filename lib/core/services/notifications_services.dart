@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:else7a_tamam/core/utilities/app_constance.dart';
+import '../../app.dart';
+import '/core/utilities/app_constance.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../global/theme/app_colors_light.dart';
@@ -19,13 +20,13 @@ class NotificationsServices {
           channelDescription: AppConstance.channelDescription,
           defaultColor: AppColorsLight.primaryColor,
           ledColor: AppColorsLight.whiteColor,
-        )
+        ),
       ],
       // Channel groups are only visual and are not required
       channelGroups: [
         NotificationChannelGroup(
           channelGroupName: AppConstance.channelGroupName,
-          channelGroupkey: AppConstance.channelGroupKey,
+          channelGroupKey: AppConstance.channelGroupKey,
         ),
       ],
       debug: true,
@@ -33,26 +34,27 @@ class NotificationsServices {
   }
 
   static Future<void> backgroundMessageHandler() async {
-    FirebaseMessaging.onBackgroundMessage((message) {
-      log('onBackgroundMessage: $message');
-      return createNotification(
-        title: message.notification!.title!,
-        body: message.notification!.body!,
-        payload: message.data['route'] ?? message.notification!.body,
-      );
-    });
+    FirebaseMessaging.onBackgroundMessage(
+      (message) {
+        return createNotification(
+          title: message.notification!.title!,
+          body: message.notification!.body!,
+          payload: message.data['route'] ?? message.notification!.body,
+        );
+      },
+    );
   }
 
   static Future<void> foregroundMessageHandler() async {
-    FirebaseMessaging.onMessage.listen((message) async {
-      log('onMessage: $message');
-
-      return await createNotification(
-        title: message.notification!.title!,
-        body: message.notification!.body!,
-        payload: message.data['route'] ?? message.notification!.body,
-      );
-    });
+    FirebaseMessaging.onMessage.listen(
+      (message) async {
+        return await createNotification(
+          title: message.notification!.title!,
+          body: message.notification!.body!,
+          payload: message.data['route'] ?? message.notification!.body,
+        );
+      },
+    );
   }
 
   static Future<void> createNotification({
@@ -66,8 +68,81 @@ class NotificationsServices {
         channelKey: AppConstance.channelKey,
         title: title,
         body: body,
+        actionType: ActionType.Default,
+        locked: true,
+        wakeUpScreen: true,
+        category: NotificationCategory.Alarm,
+        displayOnBackground: true,
+        displayOnForeground: true,
+        icon: 'assets/images/logo.png',
       ),
+      actionButtons: [
+        NotificationActionButton(
+          key: 'OK',
+          label: 'حسناً',
+          enabled: true,
+          color: AppColorsLight.primaryColor,
+          actionType: ActionType.Default,
+        ),
+      ],
     );
+  }
+
+  static setListeners() {
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod: (ReceivedAction receivedAction) {
+        return NotificationsServices.onActionReceivedMethod(receivedAction);
+      },
+      onNotificationCreatedMethod: (ReceivedNotification receivedNotification) {
+        return NotificationsServices.onNotificationCreatedMethod(
+            receivedNotification);
+      },
+      onNotificationDisplayedMethod:
+          (ReceivedNotification receivedNotification) {
+        return NotificationsServices.onNotificationDisplayedMethod(
+            receivedNotification);
+      },
+      onDismissActionReceivedMethod: (ReceivedAction receivedAction) {
+        return NotificationsServices.onDismissActionReceivedMethod(
+            receivedAction);
+      },
+    );
+  }
+
+  /// Use this method to detect when a new notification or a schedule is created
+  @pragma("vm:entry-point")
+  static Future<void> onNotificationCreatedMethod(
+      ReceivedNotification receivedNotification) async {
+    // Your code goes here
+  }
+
+  /// Use this method to detect every time that a new notification is displayed
+  @pragma("vm:entry-point")
+  static Future<void> onNotificationDisplayedMethod(
+      ReceivedNotification receivedNotification) async {
+    log("Notification displayed: ${receivedNotification.id}");
+    // Your code goes here
+  }
+
+  /// Use this method to detect if the user dismissed a notification
+  @pragma("vm:entry-point")
+  static Future<void> onDismissActionReceivedMethod(
+      ReceivedAction receivedAction) async {
+    // Your code goes here
+  }
+
+  /// Use this method to detect when the user taps on a notification or action button
+  @pragma("vm:entry-point")
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {
+    // Your code goes here
+
+    // Navigate into pages, avoiding to open the notification details page over another details page already opened
+    MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        '/notification-page',
+        (route) =>
+            (route.settings.name != '/notification-page') || route.isFirst,
+        arguments: receivedAction);
   }
 
   static int _generateId() {

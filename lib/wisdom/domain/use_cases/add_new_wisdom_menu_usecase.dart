@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:else7a_tamam/core/error/failures.dart';
-import 'package:else7a_tamam/core/usecase/base_usecase.dart';
+import '/core/error/failures.dart';
+import '/core/usecase/base_usecase.dart';
 import 'package:equatable/equatable.dart';
 
 import '../repositories/base_wisdom_menu_repository.dart';

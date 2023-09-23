@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:else7a_tamam/core/network/error_message_model.dart';
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
+import '/core/network/error_message_model.dart';
+import '/core/utilities/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

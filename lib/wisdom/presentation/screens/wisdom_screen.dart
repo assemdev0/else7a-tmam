@@ -1,6 +1,6 @@
-import 'package:else7a_tamam/core/utilities/app_constance.dart';
-import 'package:else7a_tamam/core/utilities/enums.dart';
-import 'package:else7a_tamam/wisdom/domain/entities/wisdom_menu.dart';
+import '/core/utilities/app_constance.dart';
+import '/core/utilities/enums.dart';
+import '/wisdom/domain/entities/wisdom_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -70,7 +70,7 @@ class WisdomScreen extends StatelessWidget {
                         ),
                         child: Text(
                           wisdom.subMenu[index],
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       );
                     },

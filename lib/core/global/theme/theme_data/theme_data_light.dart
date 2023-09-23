@@ -90,7 +90,7 @@ ThemeData getThemeDataLight() => ThemeData(
         bodySmall: TextStyle(
           color: AppColorsLight.whiteColor,
           fontWeight: FontWeight.w300,
-          fontSize: 14.0.sp,
+          fontSize: 15.0.sp,
         ),
       ),
     );

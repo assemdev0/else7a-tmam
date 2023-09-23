@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
+import '/core/global/theme/app_colors_light.dart';
+import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -18,7 +18,7 @@ AwesomeDialog defaultAppDialog({
       title: title,
       desc: desc,
       descTextStyle: TextStyle(
-        fontSize: 14.sp,
+        fontSize: 16.5.sp,
         fontWeight: FontWeight.w400,
         color: AppColorsLight.textDarkColor,
       ),
