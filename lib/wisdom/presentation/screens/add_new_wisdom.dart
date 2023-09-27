@@ -20,27 +20,36 @@ class AddNewWisdom extends StatelessWidget {
             horizontal: 2.5.w,
             vertical: 2.5.h,
           ),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: WisdomMenuCubit.get(context).newWisdomController,
-                decoration: const InputDecoration(
-                  labelText: AppStrings.wisdomName,
+          child: Form(
+            key: WisdomMenuCubit.get(context).addNewWisdomFormKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: WisdomMenuCubit.get(context).newWisdomController,
+                  decoration: const InputDecoration(
+                    labelText: AppStrings.wisdomName,
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppStrings.pleaseEnterSomeText;
+                    }
+                    return null;
+                  },
                 ),
-              ),
-              SizedBox(
-                height: 2.h,
-              ),
-              AppDefaultButton(
-                text: AppStrings.addNewWisdom,
-                onPressed: () {
-                  return WisdomMenuCubit.get(context).addNewWisdom(
-                    context: context,
-                    name: name,
-                  );
-                },
-              ),
-            ],
+                SizedBox(
+                  height: 2.h,
+                ),
+                AppDefaultButton(
+                  text: AppStrings.addNewWisdom,
+                  onPressed: () {
+                    return WisdomMenuCubit.get(context).addNewWisdom(
+                      context: context,
+                      name: name,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

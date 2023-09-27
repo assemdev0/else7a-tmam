@@ -28,6 +28,13 @@ class AppStrings {
   static const String wisdomMenuName = 'اسم القائمة';
   static const String wisdomName = 'اسم الحكمة';
   static const String addNewWisdom = 'إضافة حكمة جديدة';
+  static const String deleteWisdom = 'حذف الحكمة';
+  static const String deleteWisdomMenu = 'حذف القائمة';
+  static const String deleteWisdomMenuDesc =
+      'هل أنت متأكد من حذف القائمة وكل ما يحتويها؟';
+  static const String deleteWisdomDesc = 'هل أنت متأكد من حذف الحكمة؟';
+  static const String wisdomDeletedSuccessfully = 'تم حذف الحكمة بنجاح';
+  static const String wisdomMenuDeletedSuccessfully = 'تم حذف القائمة بنجاح';
   static const String wisdomAddedSuccessfully = 'تم إضافة الحكمة بنجاح';
   static const String addNewWisdomMenuSuccessfully = 'تم إضافة القائمة بنجاح';
 }

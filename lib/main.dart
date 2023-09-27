@@ -32,8 +32,8 @@ void main() async {
       SharedPref.getData(key: AppConstance.userTypeKey) ?? '';
   AppConstance.uId = SharedPref.getData(key: AppConstance.uIdKey) ?? '';
   await NotificationsServices.init();
-  NotificationsServices.backgroundMessageHandler();
-  NotificationsServices.foregroundMessageHandler();
+  await NotificationsServices.foregroundMessageHandler();
+  await NotificationsServices.backgroundMessageHandler();
   await FirebaseMessaging.instance.getToken().then((value) {
     log(value.toString());
   }).catchError((error) {

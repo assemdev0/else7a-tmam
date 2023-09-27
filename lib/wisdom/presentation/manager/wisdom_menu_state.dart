@@ -38,3 +38,23 @@ class AddSingleWisdomErrorState extends WisdomMenuState {
 
   AddSingleWisdomErrorState(this.message);
 }
+
+class DeleteSingleWisdomLoadingState extends WisdomMenuState {}
+
+class DeleteSingleWisdomSuccessState extends WisdomMenuState {}
+
+class DeleteSingleWisdomErrorState extends WisdomMenuState {
+  final String message;
+
+  DeleteSingleWisdomErrorState(this.message);
+}
+
+class DeleteWisdomMenuLoadingState extends WisdomMenuState {}
+
+class DeleteWisdomMenuSuccessState extends WisdomMenuState {}
+
+class DeleteWisdomMenuErrorState extends WisdomMenuState {
+  final String message;
+
+  DeleteWisdomMenuErrorState(this.message);
+}

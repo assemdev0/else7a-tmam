@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'auth/presentation/manager/auth_cubit.dart';
@@ -10,6 +11,7 @@ import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'auth/presentation/screens/login_screen.dart';
 import 'core/global/theme/theme_data/theme_data_light.dart';
+import 'core/services/notifications_services.dart';
 import 'wisdom/presentation/manager/wisdom_menu_cubit.dart';
 
 class MyApp extends StatefulWidget {
@@ -25,7 +27,24 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // NotificationsServices.setListeners();
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod: (ReceivedAction receivedAction) {
+        return NotificationsServices.onActionReceivedMethod(receivedAction);
+      },
+      onNotificationCreatedMethod: (ReceivedNotification receivedNotification) {
+        return NotificationsServices.onNotificationCreatedMethod(
+            receivedNotification);
+      },
+      onNotificationDisplayedMethod:
+          (ReceivedNotification receivedNotification) {
+        return NotificationsServices.onNotificationDisplayedMethod(
+            receivedNotification);
+      },
+      onDismissActionReceivedMethod: (ReceivedAction receivedAction) {
+        return NotificationsServices.onDismissActionReceivedMethod(
+            receivedAction);
+      },
+    );
     super.initState();
   }
 

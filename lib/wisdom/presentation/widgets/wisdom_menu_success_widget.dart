@@ -1,3 +1,8 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
+
+import '/core/services/notifications_services.dart';
+
 import '/auth/presentation/manager/auth_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -68,7 +73,10 @@ class WisdomMenuSuccessWidget extends StatelessWidget {
                           },
                           child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(vertical: 2.h),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 2.h,
+                              horizontal: 2.w,
+                            ),
                             decoration: BoxDecoration(
                               color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(4.w),
@@ -83,14 +91,50 @@ class WisdomMenuSuccessWidget extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: Text(
-                              state.wisdomMenu[index].name,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  state.wisdomMenu[index].name,
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                if (AppConstance.userType ==
+                                    UserType.admin.name)
+                                  IconButton(
+                                    onPressed: () {
+                                      WisdomMenuCubit.get(context)
+                                          .onDeleteWisdomMenuClicked(
+                                        context: context,
+                                        name: state.wisdomMenu[index].name,
+                                      );
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: AppColorsLight.errorColor,
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                         );
                       },
                     ),
+                  ElevatedButton(
+                    onPressed: () {
+                      NotificationsServices.createNotification(
+                        payload: 'Test Notification',
+                        title: 'Test Notification',
+                        body: 'Test Notification Body',
+                      );
+                    },
+                    child: const Text('Test Notifications'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      AwesomeNotifications().cancelAll();
+                    },
+                    child: const Text('Cancel Notifications'),
+                  ),
                 ],
               ),
             ),

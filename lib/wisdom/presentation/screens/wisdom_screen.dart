@@ -1,3 +1,5 @@
+import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
+
 import '/core/utilities/app_constance.dart';
 import '/core/utilities/enums.dart';
 import '/wisdom/domain/entities/wisdom_menu.dart';
@@ -68,9 +70,29 @@ class WisdomScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: Text(
-                          wisdom.subMenu[index],
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                wisdom.subMenu[index],
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                            if (AppConstance.userType == UserType.admin.name)
+                              IconButton(
+                                onPressed: () {
+                                  WisdomMenuCubit.get(context)
+                                      .onDeleteSingleWisdomClicked(
+                                    context: context,
+                                    name: wisdom.name,
+                                    subMenu: wisdom.subMenu[index],
+                                  );
+                                },
+                                icon: const Icon(Icons.delete),
+                                color: AppColorsLight.errorColor,
+                              ),
+                          ],
                         ),
                       );
                     },

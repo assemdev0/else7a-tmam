@@ -33,22 +33,24 @@ class NotificationsServices {
     );
   }
 
-  static Future<void> backgroundMessageHandler() async {
-    FirebaseMessaging.onBackgroundMessage(
-      (message) {
-        return createNotification(
-          title: message.notification!.title!,
-          body: message.notification!.body!,
-          payload: message.data['route'] ?? message.notification!.body,
-        );
-      },
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
+    createNotification(
+      title: message.notification!.title!,
+      body: message.notification!.body!,
+      payload: message.data['route'] ?? message.notification!.body,
     );
+  }
+
+  static Future<void> backgroundMessageHandler() async {
+    return FirebaseMessaging.onBackgroundMessage(
+        _firebaseMessagingBackgroundHandler);
   }
 
   static Future<void> foregroundMessageHandler() async {
     FirebaseMessaging.onMessage.listen(
       (message) async {
-        return await createNotification(
+        await createNotification(
           title: message.notification!.title!,
           body: message.notification!.body!,
           payload: message.data['route'] ?? message.notification!.body,
@@ -62,6 +64,8 @@ class NotificationsServices {
     required String body,
     required String payload,
   }) async {
+    var result = DateTime.now().add(const Duration(minutes: 1));
+
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: _generateId(),
@@ -71,10 +75,16 @@ class NotificationsServices {
         actionType: ActionType.Default,
         locked: true,
         wakeUpScreen: true,
-        category: NotificationCategory.Alarm,
+        category: NotificationCategory.Reminder,
         displayOnBackground: true,
         displayOnForeground: true,
-        icon: 'assets/images/logo.png',
+      ),
+      schedule: NotificationCalendar(
+        hour: result.hour,
+        minute: result.minute,
+        second: result.second,
+        millisecond: result.millisecond,
+        repeats: false,
       ),
       actionButtons: [
         NotificationActionButton(
@@ -136,13 +146,18 @@ class NotificationsServices {
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
     // Your code goes here
-
-    // Navigate into pages, avoiding to open the notification details page over another details page already opened
-    MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
-        '/notification-page',
-        (route) =>
-            (route.settings.name != '/notification-page') || route.isFirst,
-        arguments: receivedAction);
+    log("Action received: ${receivedAction.buttonKeyPressed}");
+    createNotification(
+      title: 'New',
+      body: 'Test',
+      payload: 'Test',
+    );
+    // // Navigate into pages, avoiding to open the notification details page over another details page already opened
+    // MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+    //     '/notification-page',
+    //     (route) =>
+    //         (route.settings.name != '/notification-page') || route.isFirst,
+    //     arguments: receivedAction);
   }
 
   static int _generateId() {

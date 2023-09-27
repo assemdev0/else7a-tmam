@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 import '/core/error/exceptions.dart';
 
 import '/core/error/failures.dart';
@@ -43,6 +44,29 @@ class WisdomMenuRepository extends BaseWisdomMenuRepository {
   Future<Either<Failure, List<WisdomMenu>>> getWisdomMenu() async {
     try {
       final result = await _baseWisdomMenuRemoteDataSource.getWisdomMenu();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteSingleWisdom(
+      DeleteSingleWisdomParams params) async {
+    try {
+      final result =
+          await _baseWisdomMenuRemoteDataSource.deleteSingleWisdom(params);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteWisdomMenu(String params) async {
+    try {
+      final result =
+          await _baseWisdomMenuRemoteDataSource.deleteWisdomMenu(params);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.errorMessageModel.statusMessage));

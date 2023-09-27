@@ -17,33 +17,37 @@ class AddNewWisdomMenuScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: WisdomMenuCubit.get(context).wisdomMenuNameController,
-              decoration: const InputDecoration(
-                labelText: AppStrings.wisdomMenuName,
+        child: Form(
+          key: WisdomMenuCubit.get(context).addNewWisdomMenuFormKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller:
+                    WisdomMenuCubit.get(context).wisdomMenuNameController,
+                decoration: const InputDecoration(
+                  labelText: AppStrings.wisdomMenuName,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            TextFormField(
-              controller: WisdomMenuCubit.get(context).wisdomNameController,
-              decoration: const InputDecoration(
-                labelText: AppStrings.wisdomName,
+              SizedBox(
+                height: 3.h,
               ),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            AppDefaultButton(
-              onPressed: () {
-                return WisdomMenuCubit.get(context).addNewWisdomMenu(context);
-              },
-              text: AppStrings.addNewWisdomMenu,
-            ),
-          ],
+              TextFormField(
+                controller: WisdomMenuCubit.get(context).wisdomNameController,
+                decoration: const InputDecoration(
+                  labelText: AppStrings.wisdomName,
+                ),
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
+              AppDefaultButton(
+                onPressed: () {
+                  return WisdomMenuCubit.get(context).addNewWisdomMenu(context);
+                },
+                text: AppStrings.addNewWisdomMenu,
+              ),
+            ],
+          ),
         ),
       ),
     );

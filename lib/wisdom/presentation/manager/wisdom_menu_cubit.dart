@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
+import '../../domain/use_cases/delete_wisdom_menu_usecase.dart';
 import '/auth/presentation/screens/login_screen.dart';
 import '/core/usecase/base_usecase.dart';
 import '/wisdom/presentation/screens/add_new_wisdom.dart';
@@ -29,8 +31,13 @@ class WisdomMenuCubit extends Cubit<WisdomMenuState> {
   final GetWisdomMenuUseCase _getWisdomMenuUseCase = sl();
   final AddNewWisdomMenuUseCase _addNewWisdomMenuUseCase = sl();
   final AddSingleWisdomUseCase _addSingleWisdomUseCase = sl();
+  final DeleteSingleWisdomUseCase _deleteSingleWisdomUseCase = sl();
+  final DeleteWisdomMenuUseCase _deleteWisdomMenuUseCase = sl();
 
   /// Add New Wisdom Menu Controllers
+
+  final addNewWisdomFormKey = GlobalKey<FormState>();
+  final addNewWisdomMenuFormKey = GlobalKey<FormState>();
   final wisdomMenuNameController = TextEditingController();
   final wisdomNameController = TextEditingController();
   final newWisdomController = TextEditingController();
@@ -166,6 +173,89 @@ class WisdomMenuCubit extends Cubit<WisdomMenuState> {
           name: name,
         ),
       ),
+    );
+  }
+
+  onDeleteSingleWisdomClicked({
+    required BuildContext context,
+    required String name,
+    required String subMenu,
+  }) async {
+    defaultAppDialog(
+      context: context,
+      title: AppStrings.deleteWisdom,
+      desc: AppStrings.deleteWisdomDesc,
+      dialogType: DialogType.warning,
+      btnOkOnPress: () {
+        _deleteWisdom(
+          context,
+          DeleteSingleWisdomParams(
+            name: name,
+            subMenu: subMenu,
+          ),
+        );
+      },
+    ).show();
+  }
+
+  _deleteWisdom(BuildContext context, DeleteSingleWisdomParams params) async {
+    emit(DeleteSingleWisdomLoadingState());
+    final result = await _deleteSingleWisdomUseCase(params);
+    result.fold(
+      (l) => emit(DeleteSingleWisdomErrorState(l.message)),
+      (r) {
+        defaultAppDialog(
+          context: context,
+          title: AppStrings.success,
+          desc: AppStrings.wisdomDeletedSuccessfully,
+          dialogType: DialogType.success,
+          btnOkOnPress: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const WisdomMenuScreen(),
+                ),
+                (route) => false);
+          },
+        ).show();
+        emit(DeleteSingleWisdomSuccessState());
+      },
+    );
+  }
+
+  onDeleteWisdomMenuClicked({
+    required BuildContext context,
+    required String name,
+  }) async {
+    defaultAppDialog(
+      context: context,
+      title: AppStrings.deleteWisdomMenu,
+      desc: AppStrings.deleteWisdomMenuDesc,
+      dialogType: DialogType.warning,
+      btnOkOnPress: () {
+        _deleteWisdomMenu(
+          context,
+          name,
+        );
+      },
+    ).show();
+  }
+
+  _deleteWisdomMenu(BuildContext context, String name) async {
+    final result = await _deleteWisdomMenuUseCase(name);
+    result.fold(
+      (l) => log(l.message),
+      (r) {
+        defaultAppDialog(
+          context: context,
+          title: AppStrings.success,
+          desc: AppStrings.wisdomMenuDeletedSuccessfully,
+          dialogType: DialogType.success,
+          btnOkOnPress: () {
+            getWisdomMenu(context);
+          },
+        ).show();
+      },
     );
   }
 }

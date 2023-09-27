@@ -1,3 +1,6 @@
+import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
+
+import '../../wisdom/domain/use_cases/delete_wisdom_menu_usecase.dart';
 import '/wisdom/data/data_sources/wisdom_remote_data_source.dart';
 import '/wisdom/domain/repositories/base_wisdom_menu_repository.dart';
 import '/wisdom/domain/use_cases/add_new_wisdom_menu_usecase.dart';
@@ -31,6 +34,8 @@ class ServicesLocator {
     sl.registerLazySingleton(() => GetWisdomMenuUseCase(sl()));
     sl.registerLazySingleton(() => AddNewWisdomMenuUseCase(sl()));
     sl.registerLazySingleton(() => AddSingleWisdomUseCase(sl()));
+    sl.registerLazySingleton(() => DeleteSingleWisdomUseCase(sl()));
+    sl.registerLazySingleton(() => DeleteWisdomMenuUseCase(sl()));
 
     /// Repository
     sl.registerLazySingleton<BaseAuthRepository>(() => AuthRepository(sl()));
