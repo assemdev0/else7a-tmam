@@ -5,7 +5,6 @@ import '../../../core/global/widgets/app_default_button.dart';
 import '../../../core/utilities/app_strings.dart';
 import '../manager/auth_cubit.dart';
 
-import '../../../core/utilities/app_strings.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
   const RegisterButtonWidget({super.key});

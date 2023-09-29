@@ -1,6 +1,9 @@
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:else7a_tamam/core/network/shared_preferences.dart';
+import 'package:else7a_tamam/core/services/notifications_services.dart';
+import 'package:else7a_tamam/core/utilities/app_constance.dart';
 import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 import '../../domain/use_cases/delete_wisdom_menu_usecase.dart';
 import '/auth/presentation/screens/login_screen.dart';
@@ -59,7 +62,15 @@ class WisdomMenuCubit extends Cubit<WisdomMenuState> {
         }
         emit(GetWisdomMenuErrorState(l.message));
       },
-      (r) => emit(GetWisdomMenuSuccessState(r)),
+      (r) {
+        if (AppConstance.firstTime) {
+          NotificationsServices.createNotification(
+              title: r[0].name, body: r[0].subMenu[0], payload: r[0].name);
+          AppConstance.firstTime = false;
+          SharedPref.setData(key: AppConstance.firstTimeKey, value: false);
+        }
+        emit(GetWisdomMenuSuccessState(r));
+      },
     );
   }
 

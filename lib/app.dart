@@ -1,9 +1,7 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'auth/presentation/manager/auth_cubit.dart';
 import '/core/utilities/app_constance.dart';
-import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -15,7 +13,8 @@ import 'core/services/notifications_services.dart';
 import 'wisdom/presentation/manager/wisdom_menu_cubit.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.homePage});
+  final Widget homePage;
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -27,24 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: (ReceivedAction receivedAction) {
-        return NotificationsServices.onActionReceivedMethod(receivedAction);
-      },
-      onNotificationCreatedMethod: (ReceivedNotification receivedNotification) {
-        return NotificationsServices.onNotificationCreatedMethod(
-            receivedNotification);
-      },
-      onNotificationDisplayedMethod:
-          (ReceivedNotification receivedNotification) {
-        return NotificationsServices.onNotificationDisplayedMethod(
-            receivedNotification);
-      },
-      onDismissActionReceivedMethod: (ReceivedAction receivedAction) {
-        return NotificationsServices.onDismissActionReceivedMethod(
-            receivedAction);
-      },
-    );
+    NotificationsServices.setListeners();
     super.initState();
   }
 
@@ -71,7 +53,7 @@ class _MyAppState extends State<MyApp> {
             theme: getThemeDataLight(),
             title: AppStrings.appName,
             home: AppConstance.uId.isNotEmpty
-                ? const WisdomMenuScreen()
+                ? widget.homePage
                 : const LoginScreen(),
           );
         },

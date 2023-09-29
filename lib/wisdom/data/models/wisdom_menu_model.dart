@@ -21,4 +21,11 @@ class WisdomMenuModel extends WisdomMenu {
       'subMenu': FieldValue.arrayUnion(super.subMenu),
     };
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': super.name,
+      'subMenu': super.subMenu,
+    };
+  }
 }

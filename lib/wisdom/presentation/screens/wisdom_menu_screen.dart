@@ -6,8 +6,20 @@ import '../widgets/wisdom_menu_success_widget.dart';
 import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 
-class WisdomMenuScreen extends StatelessWidget {
+class WisdomMenuScreen extends StatefulWidget {
   const WisdomMenuScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WisdomMenuScreen> createState() => _WisdomMenuScreenState();
+}
+
+class _WisdomMenuScreenState extends State<WisdomMenuScreen> {
+  @override
+  void initState() {
+    /// add new notification when receive notification
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

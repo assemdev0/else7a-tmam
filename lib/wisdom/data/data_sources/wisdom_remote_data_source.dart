@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:else7a_tamam/core/network/shared_preferences.dart';
+import 'package:else7a_tamam/core/utilities/app_constance.dart';
 import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 import '/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
 import '/core/network/error_message_model.dart';
@@ -47,6 +50,14 @@ class WisdomRemoteDataSource extends BaseWisdomRemoteDataSource {
     try {
       final result =
           await FirebaseFirestore.instance.collection("wisdom").get();
+      AppConstance.wisdomList = [];
+
+      for (var element in result.docs) {
+        final value = WisdomMenuModel.fromJson(element.data());
+        AppConstance.wisdomList.add(json.encode(value.toMap()));
+      }
+      await SharedPref.setData(
+          key: AppConstance.wisdomListKey, value: AppConstance.wisdomList);
       return result.docs
           .map((e) => WisdomMenuModel.fromJson(e.data()))
           .toList();

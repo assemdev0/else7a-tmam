@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import '/core/network/error_message_model.dart';
 import '/core/utilities/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/usecase/base_usecase.dart';
@@ -18,25 +15,6 @@ abstract class BaseAuthRemoteDataSource {
 class AuthRemoteDataSource extends BaseAuthRemoteDataSource {
   @override
   Future<User> loginWithEmail(AuthParams params) async {
-    debugPrint(params.email);
-    debugPrint(params.password);
-    // final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
-    //   email: params.email,
-    //   password: params.password,
-    // );
-    // if (user.user != null) {
-    //   return user.user!;
-    // } else {
-    //   log("FirebaseAuthException: Something went wrong");
-    //   throw FirebaseAuthException(code: user.credential.toString()
-    //       // errorMessageModel: const ErrorMessageModel(
-    //       //   statusMessage: "Something went wrong",
-    //       //   statusCode: "FirebaseAuthException",
-    //       //   success: false,
-    //       // ),
-    //       );
-    // }
-
     try {
       final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: params.email,
@@ -72,7 +50,7 @@ class AuthRemoteDataSource extends BaseAuthRemoteDataSource {
   @override
   Future<NoParams> logout() async {
     try {
-      final result = await FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance.signOut();
 
       return const NoParams();
     } on FirebaseAuthException catch (e) {
@@ -95,7 +73,6 @@ class AuthRemoteDataSource extends BaseAuthRemoteDataSource {
       );
       return user.user!;
     } on FirebaseAuthException catch (e) {
-      log("FirebaseAuthException: Something went wrong");
       throw ServerException(
         errorMessageModel: ErrorMessageModel(
           statusMessage: AppStrings.somethingWentWrong,

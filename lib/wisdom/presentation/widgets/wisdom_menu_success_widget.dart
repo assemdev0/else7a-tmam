@@ -1,8 +1,5 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
-
 import '/core/services/notifications_services.dart';
-
+import '/core/global/theme/app_colors_light.dart';
 import '/auth/presentation/manager/auth_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -122,18 +119,12 @@ class WisdomMenuSuccessWidget extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       NotificationsServices.createNotification(
-                        payload: 'Test Notification',
-                        title: 'Test Notification',
-                        body: 'Test Notification Body',
+                        title: 'Test',
+                        body: 'Test',
+                        payload: 'Test',
                       );
                     },
-                    child: const Text('Test Notifications'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      AwesomeNotifications().cancelAll();
-                    },
-                    child: const Text('Cancel Notifications'),
+                    child: const Text('Test'),
                   ),
                 ],
               ),

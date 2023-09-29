@@ -1,5 +1,6 @@
 class AppStrings {
   static const String appName = 'الصحة تمام';
+  static const String notifications = 'الإشعارات';
   static const String somethingWrong = 'حدث خطأ ما';
   static const String error = 'خطأ';
   static const String success = 'نجاح';
