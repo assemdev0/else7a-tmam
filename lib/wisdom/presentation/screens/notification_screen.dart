@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:else7a_tamam/core/services/notifications_services.dart';
-import 'package:else7a_tamam/core/utilities/app_strings.dart';
-import 'package:else7a_tamam/wisdom/presentation/screens/wisdom_menu_screen.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import '/core/services/notifications_services.dart';
+import '/core/utilities/app_strings.dart';
+import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/network/shared_preferences.dart';
@@ -24,6 +26,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
     _createNewNotification();
+
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const WisdomMenuScreen()),
@@ -77,8 +80,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.notifications),
-      ),
+          // title: const Text(AppStrings.notifications),
+          ),
       body: const Center(
         child: CircularProgressIndicator(),
       ),

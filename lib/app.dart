@@ -1,3 +1,4 @@
+import 'package:else7a_tamam/wisdom/presentation/screens/notification_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'auth/presentation/manager/auth_cubit.dart';
@@ -9,7 +10,6 @@ import '/core/utilities/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'auth/presentation/screens/login_screen.dart';
 import 'core/global/theme/theme_data/theme_data_light.dart';
-import 'core/services/notifications_services.dart';
 import 'wisdom/presentation/manager/wisdom_menu_cubit.dart';
 
 class MyApp extends StatefulWidget {
@@ -26,7 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    NotificationsServices.setListeners();
+    // NotificationsServices.setListeners();
     super.initState();
   }
 

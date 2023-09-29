@@ -72,6 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
             btnOkOnPress: () {
               AppConstance.uId = r.uid;
               SharedPref.setData(key: AppConstance.uIdKey, value: r.uid);
+
               if (r.email!.contains('admin')) {
                 AppConstance.userType = UserType.admin.name;
                 SharedPref.setData(

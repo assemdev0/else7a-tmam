@@ -1,12 +1,12 @@
 name: else7a_tamam
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: ">=3.1.0 <4.0.0"
 
 dependency_overrides:
   intl: ^0.18.1
@@ -30,18 +30,19 @@ dependencies:
   email_validator: ^2.1.17
   flutter_localizations:
     sdk: flutter
-#  intl: any
+  #  intl: any
   flutter_native_splash: ^2.3.2
   flutter_local_notifications: ^15.1.1
   timezone: ^0.9.2
-  awesome_notifications: ^0.7.6
+  awesome_notifications: any
+  #  ^0.7.6
   workmanager: ^0.5.1
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:
   color: "#ffffff"
   image: assets/images/logo.png
-#  branding: assets/images/logo.png
+  #  branding: assets/images/logo.png
   android_12:
     image: assets/images/logo.png
     icon_background_color: "#ffffff"
@@ -58,7 +59,6 @@ flutter_launcher_icons:
     background_color: "#ffffff"
     theme_color: "#ffffff"
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,9 +66,7 @@ dev_dependencies:
   flutter_lints: ^2.0.3
   flutter_launcher_icons: ^0.13.1
 
-
 flutter:
-
   uses-material-design: true
 
   assets:

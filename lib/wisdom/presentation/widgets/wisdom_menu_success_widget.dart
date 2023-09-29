@@ -22,6 +22,16 @@ class WisdomMenuSuccessWidget extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
+            onPressed: () => NotificationsServices.refreshNotification(
+              title: state.wisdomMenu[AppConstance.wisdomMenuIndex].name,
+              body: state.wisdomMenu[AppConstance.wisdomMenuIndex]
+                  .subMenu[AppConstance.wisdomIndex],
+              payload: state.wisdomMenu[AppConstance.wisdomMenuIndex]
+                  .subMenu[AppConstance.wisdomIndex],
+            ),
+            icon: const Icon(Icons.refresh),
+          ),
+          IconButton(
             onPressed: () => AuthCubit.get(context).logout(context),
             icon: const Icon(Icons.logout),
           ),
@@ -116,16 +126,6 @@ class WisdomMenuSuccessWidget extends StatelessWidget {
                         );
                       },
                     ),
-                  ElevatedButton(
-                    onPressed: () {
-                      NotificationsServices.createNotification(
-                        title: 'Test',
-                        body: 'Test',
-                        payload: 'Test',
-                      );
-                    },
-                    child: const Text('Test'),
-                  ),
                 ],
               ),
             ),

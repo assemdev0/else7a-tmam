@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:else7a_tamam/wisdom/presentation/screens/notification_screen.dart';
-import 'package:else7a_tamam/wisdom/presentation/screens/wisdom_menu_screen.dart';
+import '/wisdom/presentation/screens/notification_screen.dart';
+import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,27 +19,22 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()!
+      .requestPermission();
   ServicesLocator().init();
   Bloc.observer = AppBlocObserver();
+  tz.initializeTimeZones();
+  tz.setLocalLocation(tz.getLocation('Africa/Cairo'));
   await SharedPref.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-    if (!isAllowed) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
-    }
-  });
   Widget homePage = const WisdomMenuScreen();
-  ReceivedAction? receivedAction = await AwesomeNotifications()
-      .getInitialNotificationAction(removeFromActionEvents: false)
-      .timeout(const Duration(seconds: 5));
-  if (receivedAction?.channelKey == AppConstance.channelKey) {
-    homePage = const NotificationScreen();
-    log('NotificationScreen ${receivedAction?.channelKey}');
-  }
 
   AppConstance.firstTime =
       SharedPref.getData(key: AppConstance.firstTimeKey) ?? true;
@@ -49,12 +47,25 @@ void main() async {
   await NotificationsServices.init();
   await NotificationsServices.foregroundMessageHandler();
   await NotificationsServices.backgroundMessageHandler();
-  // await NotificationsServices.setListeners();
   await FirebaseMessaging.instance.getToken().then((value) {
     log(value.toString());
   }).catchError((error) {
     log(error.toString());
   });
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+
+  if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+    log('didNotificationLaunchApp');
+    homePage = const NotificationScreen();
+  } else {
+    log('else');
+    if (AppConstance.firstTime) {
+      homePage = const NotificationScreen();
+    } else {
+      homePage = const WisdomMenuScreen();
+    }
+  }
   runApp(MyApp(
     homePage: homePage,
   ));

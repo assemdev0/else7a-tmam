@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:else7a_tamam/core/network/shared_preferences.dart';
-import 'package:else7a_tamam/core/utilities/app_constance.dart';
-import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
+import '/core/network/shared_preferences.dart';
+import '/core/utilities/app_constance.dart';
+import '/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 import '/wisdom/domain/use_cases/add_single_wisdom_usecase.dart';
 import '/core/network/error_message_model.dart';
 import '/core/error/exceptions.dart';

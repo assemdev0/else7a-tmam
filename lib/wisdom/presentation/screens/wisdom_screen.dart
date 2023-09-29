@@ -1,4 +1,4 @@
-import 'package:else7a_tamam/core/global/theme/app_colors_light.dart';
+import '/core/global/theme/app_colors_light.dart';
 
 import '/core/utilities/app_constance.dart';
 import '/core/utilities/enums.dart';

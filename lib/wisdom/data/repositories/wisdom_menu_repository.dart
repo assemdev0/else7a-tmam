@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
+import '/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 import '/core/error/exceptions.dart';
 
 import '/core/error/failures.dart';

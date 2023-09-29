@@ -1,4 +1,4 @@
-import 'package:else7a_tamam/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
+import '/wisdom/domain/use_cases/delete_single_wisdom_usecase.dart';
 
 import '../../wisdom/domain/use_cases/delete_wisdom_menu_usecase.dart';
 import '/wisdom/data/data_sources/wisdom_remote_data_source.dart';
