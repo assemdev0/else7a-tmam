@@ -44,6 +44,7 @@ class WisdomMenuRepository extends BaseWisdomMenuRepository {
   Future<Either<Failure, List<WisdomMenu>>> getWisdomMenu() async {
     try {
       final result = await _baseWisdomMenuRemoteDataSource.getWisdomMenu();
+      result.removeWhere((element) => element.name == 'النظري');
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.errorMessageModel.statusMessage));

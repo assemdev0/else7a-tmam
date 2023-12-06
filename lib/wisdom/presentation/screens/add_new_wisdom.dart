@@ -25,6 +25,9 @@ class AddNewWisdom extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                   controller: WisdomMenuCubit.get(context).newWisdomController,
                   decoration: const InputDecoration(
                     labelText: AppStrings.wisdomName,

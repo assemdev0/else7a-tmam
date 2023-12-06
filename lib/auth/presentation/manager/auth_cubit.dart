@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import '../../../core/global/widgets/default_dialog.dart';
+import '../../../wisdom/presentation/screens/choose_wisdom_type_screen.dart';
 import '/auth/presentation/screens/login_screen.dart';
 import '/core/utilities/app_constance.dart';
 import '/core/utilities/enums.dart';
@@ -86,7 +87,7 @@ class AuthCubit extends Cubit<AuthState> {
               }
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                  builder: (context) => const WisdomMenuScreen(),
+                  builder: (context) => const ChooseWisdomTypeScreen(),
                 ),
                 (route) => false,
               );

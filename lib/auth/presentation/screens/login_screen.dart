@@ -54,6 +54,9 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormField(
+                          style: const TextStyle(
+                            color: AppColorsLight.textDarkColor,
+                          ),
                           controller:
                               AuthCubit.get(context).loginEmailController,
                           keyboardType: TextInputType.emailAddress,
@@ -75,6 +78,9 @@ class LoginScreen extends StatelessWidget {
                           height: 3.0.h,
                         ),
                         TextFormField(
+                          style: const TextStyle(
+                            color: AppColorsLight.textDarkColor,
+                          ),
                           controller:
                               AuthCubit.get(context).loginPasswordController,
                           obscureText: true,

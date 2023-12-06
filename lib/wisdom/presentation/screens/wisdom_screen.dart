@@ -1,3 +1,4 @@
+import '../../../auth/presentation/manager/auth_cubit.dart';
 import '/core/global/theme/app_colors_light.dart';
 
 import '/core/utilities/app_constance.dart';
@@ -18,6 +19,12 @@ class WisdomScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(wisdom.name),
+        actions: [
+          IconButton(
+            onPressed: () => AuthCubit.get(context).logout(context),
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AppConstance.userType == UserType.admin.name

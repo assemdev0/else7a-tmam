@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../../../core/network/shared_preferences.dart';
 import '../../../core/utilities/app_constance.dart';
 import '../../data/models/wisdom_menu_model.dart';
+import 'choose_wisdom_type_screen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
     _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const WisdomMenuScreen()),
+        MaterialPageRoute(builder: (_) => const ChooseWisdomTypeScreen()),
         (route) => false,
       );
     });

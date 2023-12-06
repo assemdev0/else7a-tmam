@@ -14,7 +14,12 @@ class AppDefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EasyButton(
-      idleStateWidget: Text(text),
+      idleStateWidget: Text(
+        text,
+        style: const TextStyle(
+          color: AppColorsLight.whiteColor,
+        ),
+      ),
       loadingStateWidget: const CircularProgressIndicator(
         strokeWidth: 3.0,
         valueColor: AlwaysStoppedAnimation<Color>(

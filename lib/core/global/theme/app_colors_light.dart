@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColorsLight {
+  static const primarySwatch = Colors.teal;
   static const primaryColor = Color(0xFF00BFA6);
   static const primaryDartColor = Color(0xFF00BFA6);
   static const primaryLightColor = Color(0xFF90E0EF);

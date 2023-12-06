@@ -10,6 +10,20 @@ ThemeData getThemeDataLight() => ThemeData(
       primaryColorDark: AppColorsLight.primaryDartColor,
       scaffoldBackgroundColor: AppColorsLight.scaffoldBackgroundColor,
       hintColor: AppColorsLight.accentColor,
+      primarySwatch: AppColorsLight.primarySwatch,
+      colorScheme: const ColorScheme.light(
+        primary: AppColorsLight.primaryColor,
+        secondary: AppColorsLight.accentColor,
+        surface: AppColorsLight.scaffoldBackgroundColor,
+        background: AppColorsLight.scaffoldBackgroundColor,
+        error: AppColorsLight.errorColor,
+        onPrimary: AppColorsLight.whiteColor,
+        onSecondary: AppColorsLight.whiteColor,
+        onSurface: AppColorsLight.textDarkColor,
+        onBackground: AppColorsLight.textDarkColor,
+        onError: AppColorsLight.whiteColor,
+        brightness: Brightness.light,
+      ),
 
       /// Floating Action Button Theme
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

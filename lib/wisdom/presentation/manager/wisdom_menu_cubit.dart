@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:else7a_tamam/wisdom/presentation/screens/choose_wisdom_type_screen.dart';
 import '/core/network/shared_preferences.dart';
 import '/core/services/notifications_services.dart';
 import '/core/utilities/app_constance.dart';
@@ -163,7 +164,7 @@ class WisdomMenuCubit extends Cubit<WisdomMenuState> {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WisdomMenuScreen(),
+                  builder: (_) => const ChooseWisdomTypeScreen(),
                 ),
                 (route) => false);
           },
@@ -224,7 +225,7 @@ class WisdomMenuCubit extends Cubit<WisdomMenuState> {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WisdomMenuScreen(),
+                  builder: (_) => const ChooseWisdomTypeScreen(),
                 ),
                 (route) => false);
           },

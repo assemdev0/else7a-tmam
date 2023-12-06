@@ -53,6 +53,9 @@ class RegisterScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormField(
+                          style: const TextStyle(
+                            color: AppColorsLight.textDarkColor,
+                          ),
                           controller:
                               AuthCubit.get(context).registerEmailController,
                           keyboardType: TextInputType.emailAddress,
@@ -74,6 +77,9 @@ class RegisterScreen extends StatelessWidget {
                           height: 3.0.h,
                         ),
                         TextFormField(
+                          style: const TextStyle(
+                            color: AppColorsLight.textDarkColor,
+                          ),
                           controller:
                               AuthCubit.get(context).registerPasswordController,
                           obscureText: true,

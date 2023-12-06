@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:awesome_notifications/awesome_notifications.dart';
 import '/wisdom/presentation/screens/notification_screen.dart';
 import '/wisdom/presentation/screens/wisdom_menu_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ import 'core/services/services_locator.dart';
 import 'core/utilities/app_constance.dart';
 import 'core/utilities/bloc_observer.dart';
 import 'firebase_options.dart';
+import 'wisdom/presentation/screens/choose_wisdom_type_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,7 +63,7 @@ void main() async {
     if (AppConstance.firstTime) {
       homePage = const NotificationScreen();
     } else {
-      homePage = const WisdomMenuScreen();
+      homePage = const ChooseWisdomTypeScreen();
     }
   }
   runApp(MyApp(

@@ -21,7 +21,7 @@ class AppStrings {
       'كلمة المرور يجب أن تكون على الأقل 6 أحرف';
   static const String somethingWentWrong = 'حدث خطأ ما';
 
-  static const String home = 'الرئيسية';
+  static const String home = normalWisdom;
 
   static const String ok = 'موافق';
   static const String noData = 'لا يوجد بيانات';
@@ -38,4 +38,9 @@ class AppStrings {
   static const String wisdomMenuDeletedSuccessfully = 'تم حذف القائمة بنجاح';
   static const String wisdomAddedSuccessfully = 'تم إضافة الحكمة بنجاح';
   static const String addNewWisdomMenuSuccessfully = 'تم إضافة القائمة بنجاح';
+
+  static const String chooseWisdomType = 'اختر نوع الحكمة';
+
+  static const String normalWisdom = 'حكمة عادية';
+  static const String theoretical = 'النظري';
 }
