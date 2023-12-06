@@ -17,7 +17,7 @@ import 'core/utilities/bloc_observer.dart';
 import 'firebase_options.dart';
 import 'wisdom/presentation/screens/choose_wisdom_type_screen.dart';
 
-void main() async {
+void main( ) async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
